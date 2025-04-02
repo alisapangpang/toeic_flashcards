@@ -11,6 +11,11 @@ const dictionary = [
     { english: "commence", pos: "verb", chinese: "開始，著手" },
     { english: "rectify", pos: "verb", chinese: "糾正，修正" },
     { english: "consensus", pos: "noun", chinese: "共識，一致意見" },
-    { english: "incumbent", pos: "adjective", chinese: "現任的，義不容辭的" }
+    { english: "incumbent", pos: "adjective", chinese: "現任的，義不容辭的" },
+    { english: "in accordance with", pos: "phrase", chinese: "依照，按照" },
+    { english: "imperative", pos: "adjective", chinese: "命令的，強制性的" },
+    { english: "incentive", pos: "noun", chinese: "激勵，獎勵" },
+    { english: "initiative", pos: "noun", chinese: "提議" },
+    { english: "inlaid", pos: "adjective", chinese: "鑲嵌的" }
 ];
 
