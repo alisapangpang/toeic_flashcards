@@ -4,18 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>English-Chinese Flashcards</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
     <div class="container">
-        <h1>Toeic 990 Flashcards</h1>
+        <h1>TOEIC Flashcardzzzz👽</h1>
         
         <div id="card-count" class="card-count"></div>
         <div class="flashcard">
-            <div id="word" class="word">Lets goooooo</div>
-            <div id="pos" class="pos"></div>
-            <div id="translation" class="translation"></div>
-            <button id="show-btn" class="show-btn">Show Translation</button>
+            <!-- English Side -->
+            <div id="english-side" class="card-side">
+                <div id="english" class="word">Lets goooo</div>
+            </div>
+            
+            <!-- Chinese Side -->
+            <div id="chinese-side" class="card-side" style="display: none;">
+                <div id="pos" class="pos"></div>
+                <div id="chinese" class="translation"></div>
+            </div>
+            
+            <button id="flip-btn" class="flip-btn" disabled>Show Translation</button>
         </div>
         
         <div class="nav-buttons">
@@ -25,7 +33,7 @@
         </div>
     </div>
     
-    <script src="vocabulary.js"></script>
-    <script src="app.js"></script>
+    <script src="vocabulary.js?v=3"></script>
+    <script src="app.js?v=3"></script>
 </body>
 </html>
