@@ -68,3 +68,4 @@ const dictionary = [
     { english: "supersede", pos: "verb", chinese: "取代，替代" },
     { english: "versatile", pos: "adjective", chinese: "多功能的，多才多藝的" }
 ];
+
