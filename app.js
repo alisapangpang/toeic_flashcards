@@ -1,8 +1,10 @@
 // DOM Elements
-const wordElement = document.getElementById('word');
+const englishSide = document.getElementById('english-side');
+const chineseSide = document.getElementById('chinese-side');
+const englishElement = document.getElementById('english');
 const posElement = document.getElementById('pos');
-const translationElement = document.getElementById('translation');
-const showBtn = document.getElementById('show-btn');
+const chineseElement = document.getElementById('chinese');
+const flipBtn = document.getElementById('flip-btn');
 const prevBtn = document.getElementById('prev-btn');
 const nextBtn = document.getElementById('next-btn');
 const startBtn = document.getElementById('start-btn');
@@ -12,6 +14,7 @@ const cardCountElement = document.getElementById('card-count');
 let currentCardIndex = -1;
 let isStudyMode = false;
 let shuffledDictionary = [];
+let showingChinese = false;
 
 // Shuffle the dictionary using Fisher-Yates algorithm
 function shuffleDictionary() {
@@ -29,10 +32,14 @@ function shuffleDictionary() {
 function displayCard(index) {
     if (index >= 0 && index < shuffledDictionary.length) {
         const card = shuffledDictionary[index];
-        wordElement.textContent = card.english;
+        
+        // Update card content
+        englishElement.textContent = card.english;
         posElement.textContent = card.pos;
-        translationElement.textContent = card.chinese;
-        translationElement.style.display = 'none';
+        chineseElement.textContent = card.chinese;
+        
+        // Always show English side first
+        showEnglishSide();
         
         // Update card count
         cardCountElement.textContent = `Card ${index + 1} of ${shuffledDictionary.length}`;
@@ -41,8 +48,33 @@ function displayCard(index) {
         prevBtn.disabled = index === 0;
         nextBtn.disabled = index === shuffledDictionary.length - 1;
         
-        showBtn.textContent = 'Show Translation';
-        showBtn.disabled = false;
+        // Enable flip button
+        flipBtn.disabled = false;
+    }
+}
+
+// Show English side
+function showEnglishSide() {
+    englishSide.style.display = 'flex';
+    chineseSide.style.display = 'none';
+    flipBtn.textContent = 'Show Translation';
+    showingChinese = false;
+}
+
+// Show Chinese side
+function showChineseSide() {
+    englishSide.style.display = 'none';
+    chineseSide.style.display = 'flex';
+    flipBtn.textContent = 'Show English';
+    showingChinese = true;
+}
+
+// Toggle between English and Chinese sides
+function toggleSides() {
+    if (showingChinese) {
+        showEnglishSide();
+    } else {
+        showChineseSide();
     }
 }
 
@@ -50,12 +82,13 @@ function displayCard(index) {
 function resetStudyMode() {
     isStudyMode = false;
     currentCardIndex = -1;
-    wordElement.textContent = 'Press Start to begin';
+    
+    englishElement.textContent = 'Press Start to begin';
     posElement.textContent = '';
-    translationElement.textContent = '';
-    translationElement.style.display = 'none';
-    showBtn.textContent = 'Show Translation';
-    showBtn.disabled = true;
+    chineseElement.textContent = '';
+    
+    showEnglishSide();
+    flipBtn.disabled = true;
     prevBtn.disabled = true;
     nextBtn.disabled = true;
     startBtn.textContent = 'Start';
@@ -80,16 +113,8 @@ function startStudyMode() {
 
 // Setup event listeners
 function setupEventListeners() {
-    // Show translation button
-    showBtn.addEventListener('click', function() {
-        if (translationElement.style.display === 'none') {
-            translationElement.style.display = 'block';
-            showBtn.textContent = 'Hide Translation';
-        } else {
-            translationElement.style.display = 'none';
-            showBtn.textContent = 'Show Translation';
-        }
-    });
+    // Flip button
+    flipBtn.addEventListener('click', toggleSides);
     
     // Previous button
     prevBtn.addEventListener('click', function() {
